@@ -1,0 +1,59 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 09/07/2023 07:44:28 PM
+// Design Name: 
+// Module Name: top_sseg_test
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module top_sseg_test();
+
+logic en;         
+logic cw;         
+logic clk;        
+logic rst;       
+logic [7:0] sseg;
+logic [3:0] an;   
+
+oscillator clk_gen(clk);
+
+assign en = 1'b1;
+assign cw = 1'b1;
+assign rst = 1'b1;
+
+top_sseg DUT(
+    .en(en),
+    .cw(cw),
+    .clk(clk),
+    .rst(rst),
+    .sseg(sseg),
+    .an(an)
+    );
+
+initial begin
+  rst = 1;
+	#10;
+	rst = 0;
+	
+	en = 0;
+	#10
+	en = 1;
+	
+$finish;
+end
+
+endmodule
